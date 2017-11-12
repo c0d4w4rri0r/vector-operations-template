@@ -1,5 +1,5 @@
 //
-//  example.cpp
+//  VecOp.h
 //  
 //
 //  Created by peter clark on 2017/11/12.
