@@ -508,6 +508,38 @@ public:
         c[ic+off]=a[ia+off]/b[ib+off];
         threeVecOps<n-1,F,G,H,T>::divAss(a,b,c,off);
     }
+    static __attribute__((always_inline)) void prodSumAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic]+=a[ia]*b[ib];
+        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c);
+    }
+    static __attribute__((always_inline)) void prodSumAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic+off]+=a[ia+off]*b[ib+off];
+        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c,off);
+    }
+    static __attribute__((always_inline)) void prodSubAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic]-=a[ia]*b[ib];
+        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c);
+    }
+    static __attribute__((always_inline)) void prodSubAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic+off]-=a[ia+off]*b[ib+off];
+        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c,off);
+    }
 };
 
 template<int (*F)(int), int (*G)(int), int (*H)(int), typename T>
@@ -568,5 +600,33 @@ public:
         constexpr int ib=G(0);
         constexpr int ic=H(0);
         c[ic+off]=a[ia+off]/b[ib+off];
+    }
+    static __attribute__((always_inline)) void prodSumAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic]+=a[ia]*b[ib];
+    }
+    static __attribute__((always_inline)) void prodSumAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic+off]+=a[ia+off]*b[ib+off];
+    }
+    static __attribute__((always_inline)) void prodSubAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic]-=a[ia]*b[ib];
+    }
+    static __attribute__((always_inline)) void prodSubAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic+off]-=a[ia+off]*b[ib+off];
     }
 };
