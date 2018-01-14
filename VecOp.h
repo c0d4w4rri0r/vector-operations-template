@@ -514,7 +514,7 @@ public:
         constexpr int ib=G(n);
         constexpr int ic=H(n);
         c[ic]+=a[ia]*b[ib];
-        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c);
+        threeVecOps<n-1,F,G,H,T>::prodSumAss(a,b,c);
     }
     static __attribute__((always_inline)) void prodSumAss(T a[], T b[], T c[], int off)
     {
@@ -522,7 +522,7 @@ public:
         constexpr int ib=G(n);
         constexpr int ic=H(n);
         c[ic+off]+=a[ia+off]*b[ib+off];
-        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c,off);
+        threeVecOps<n-1,F,G,H,T>::prodSumAss(a,b,c,off);
     }
     static __attribute__((always_inline)) void prodSubAss(T a[], T b[], T c[])
     {
@@ -530,7 +530,7 @@ public:
         constexpr int ib=G(n);
         constexpr int ic=H(n);
         c[ic]-=a[ia]*b[ib];
-        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c);
+        threeVecOps<n-1,F,G,H,T>::prodSubAss(a,b,c);
     }
     static __attribute__((always_inline)) void prodSubAss(T a[], T b[], T c[], int off)
     {
@@ -538,7 +538,39 @@ public:
         constexpr int ib=G(n);
         constexpr int ic=H(n);
         c[ic+off]-=a[ia+off]*b[ib+off];
-        threeVecOps<n-1,F,G,H,T>::prodAss(a,b,c,off);
+        threeVecOps<n-1,F,G,H,T>::prodSubAss(a,b,c,off);
+    }
+    static __attribute__((always_inline)) void divSumAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic]+=a[ia]/b[ib];
+        threeVecOps<n-1,F,G,H,T>::divSumAss(a,b,c);
+    }
+    static __attribute__((always_inline)) void divSumAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic+off]+=a[ia+off]/b[ib+off];
+        threeVecOps<n-1,F,G,H,T>::divSumAss(a,b,c,off);
+    }
+    static __attribute__((always_inline)) void divSubAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic]-=a[ia]/b[ib];
+        threeVecOps<n-1,F,G,H,T>::divSubAss(a,b,c);
+    }
+    static __attribute__((always_inline)) void divSubAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(n);
+        constexpr int ib=G(n);
+        constexpr int ic=H(n);
+        c[ic+off]-=a[ia+off]/b[ib+off];
+        threeVecOps<n-1,F,G,H,T>::divSubAss(a,b,c,off);
     }
 };
 
@@ -628,5 +660,33 @@ public:
         constexpr int ib=G(0);
         constexpr int ic=H(0);
         c[ic+off]-=a[ia+off]*b[ib+off];
+    }
+    static __attribute__((always_inline)) void divSumAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic]+=a[ia]/b[ib];
+    }
+    static __attribute__((always_inline)) void divSumAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic+off]+=a[ia+off]/b[ib+off];
+    }
+    static __attribute__((always_inline)) void divSubAss(T a[], T b[], T c[])
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic]-=a[ia]/b[ib];
+    }
+    static __attribute__((always_inline)) void divSubAss(T a[], T b[], T c[], int off)
+    {
+        constexpr int ia=F(0);
+        constexpr int ib=G(0);
+        constexpr int ic=H(0);
+        c[ic+off]-=a[ia+off]/b[ib+off];
     }
 };
